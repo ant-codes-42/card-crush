@@ -79,4 +79,5 @@ Load sessionStorage variable for category
 {rolo.js}
 Create a category function - modal JS pop up
     - Create <input>: category name
-    - Create 
+    - Create <button>: create category
+    
