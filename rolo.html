@@ -4,20 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roledex</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-    <header>
+    <header class="ui header">
         <nav>
             <button>Edit</button>
             <button>Delete</button>
         </nav>
         <h1>Cat Name</h1>
     </header>
-    <section>
+    <section class="ui header">
         <h2>CRUSH IT!</h2>
-        <div>
-            <!-- cards populate here addElement -->
-            <p>card population here</p> 
+    </section>
+    <section class="ui center aligned container">
+        <!-- This div holds the card CSS tags-->
+        <div class="ui cards">
+            <!-- front of card -->
+            <div id="card" onlcick="flip()">
+                <div class="content">
+                    <div class="discription">
+                    <!-- cards populate here addElement -->
+                    <p>card population here</p> 
+                    </div>
+                </div>
+            </div>
+            <!-- back of card -->
+            <div id="card">
+                <div class="discription">
+                <!-- cards populate here addElement -->
+                <p>card population here</p> 
+                </div>
+                <!-- button options for deleting or going to the next card -->
+                <div class="extra content">
+                    <div class="ui two buttons">
+                      <div class="ui green button">CRUSH</div>
+                      <div class="ui orange button">Next</div>
+                    </div>
+                </div> 
+             </div>
         </div>
     </section>
     <section>
@@ -29,6 +55,7 @@
             </form>
         </footer>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="./assets/js/rolo.js"></script>
     <script src="./assets/js/logic.js"></script>
     <script src="./assets/js/form.js"></script>
