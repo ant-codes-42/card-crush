@@ -14,7 +14,7 @@ Event listener - if <create category> button is clicked
         - If no text, present error message
         - If text, go to modal pop-up logic
 
-Event listener - if <category> button is clicked (how do we watch all buttons? / know which button is clicked?)
+Event listener - if <category> button is clicked
     - Redirect to: rolo.html
 
 
