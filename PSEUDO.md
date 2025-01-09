@@ -18,9 +18,13 @@ Call build elements function:
 
 {form.js}
 Event listener - if <create category> button is clicked
-    - Check <input> with #id for string
+    - Check <input> for string | need #id for the <input> field for the category field
         - If no text, present error message
-        - If text, go to modal pop-up logic (New Card)
+        - If text:
+            - Store <input> in variable
+            - Create new object for category
+            - Call function in {logic.js} to add new object to flashcards array.
+             Go to modal pop-up logic (New Card)
 
 {form.js}
 Event listener - if <category> button is clicked
@@ -32,13 +36,13 @@ Event listener - if <category> button is clicked
 
 ## New Card Modal Pop Up
 
-{form.js}
-Event listener - if <create card> button is clicked | Need '#id' for any <create card> button
+{logic.js}
+Event listener - if <create card> button is clicked
     - Check <input> with #id for string (front)
     - Check <input> with #id for string (back)
         - If no text, present error message
-        - If text, call createCard function
-    <Option 1>
+        - If text, call createCard function | createCard function in {logic.js}
+    <Option 1> | Preferred - Rachel's advice b/c we're manipulating data
         - Hide existing modal pop up elements.
         - Show hidden modal pop up elements:
             - <button>: Create another card
@@ -46,9 +50,18 @@ Event listener - if <create card> button is clicked | Need '#id' for any <create
                     - Hide existing modal pop up elements
                     - Show refreshed create card modal pop up elements
             - <button>: Start studying
-                {logic.js}
                 Event listener
+                    {logic.js}
                     - Redirect to: rolo.html
+    <Option 2>
+        - Generate new modal pop up window:
+            - <button>: Create another card
+                Event listener
+                    - Refresh first modal pop up window
+            - <button>: Start studying
+                Event listener
+                    {logic.js}
+                    -Redirect to: rolo.html
 
 ## Rolo.html Page Load
 
@@ -63,3 +76,7 @@ Load sessionStorage variable for category
     - If category is empty:
         - Text to inform user they must create a card (reference the create a card button on page)
 
+{rolo.js}
+Create a category function - modal JS pop up
+    - Create <input>: category name
+    - Create 
