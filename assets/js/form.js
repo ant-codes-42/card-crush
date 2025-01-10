@@ -29,8 +29,7 @@ function createCategoryModal(event) {
                 return;
             } else if(cardBack && cardFront){
                 alert(`card saved!`);
-            } 
-            
+            }   
         });
     }
 }
