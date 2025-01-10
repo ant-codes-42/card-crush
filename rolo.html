@@ -9,57 +9,57 @@
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <body>
-    <header class="ui header">
-        <nav>
-            <button>Edit</button>
-            <button>Delete</button>
-        </nav>
-        <h1>Cat Name</h1>
+    <header class="ui block header">
+         <div class="ui internally celled grid ui center aligned container">
+            <nav class="row">
+                <div class="three wide column">
+                    <button class="roloSqButton">Edit</button>
+                </div>
+                <div class="ten wide column">
+                    <h1>Cat Name</h1>
+                </div>
+                <div class="three wide column">
+                    <button class="roloSqButton">Delete</button>
+                </div>
+            </nav>
+        </div>
     </header>
     <section class="ui header">
         <h2>CRUSH IT!</h2>
     </section>
-    <section class="ui center aligned container">
-        <!-- This div holds the card CSS tags-->
-        <div class="ui cards">
+    <section class="ui segment">
+        <!-- This div puts the flashcards in a stack-->
+        <div class="CardContainer">
             <!-- front of card -->
-            <div id="card" onlcick="flip()">
-                <div class="content">
-                    <div class="discription">
-                    <!-- cards populate here addElement -->
-                    <p>card population here</p> 
-                    </div>
-                </div>
-            </div>
-            <!-- back of card -->
-            <div id="card">
-                <div class="discription">
+            <div id="card-front" onlcick="flip()" class="cardFront">
                 <!-- cards populate here addElement -->
                 <p>card population here</p> 
-                </div>
-                <!-- button options for deleting or going to the next card -->
+            </div>
+            <!-- back of card -->
+            <div id="card-back" class="cardBack">
+            <!-- cards populate here addElement -->
+            <p>card population here</p> 
+            <!-- button options for deleting or going to the next card -->
                 <div class="extra content">
-                    <div class="ui two buttons">
-                      <div class="ui green button">CRUSH</div>
-                      <div class="ui orange button">Next</div>
-                    </div>
+                    <button class="ui green button">CRUSH</button>
+                    <button class="ui orange button">Next</button>
                 </div> 
-             </div>
+            </div>
         </div>
     </section>
     <section>
-        <footer>
-            <form>
-                <button class="circular ui icon button">
+        <footer class="ui center aligned container">
+            <div>
+                <button class="roloCrButton">
                     <i class="arrow left icon"></i>
                 </button> <!--Back to homepage-->
-                <button class="circular ui icon button ui orange button">
+                <button class="roloCrButton shuffle">
                     <i class="random icon"></i>
                 </button> <!--shuffle cards-->
-                <button class="circular ui icon button">
+                <button class="roloCrButton">
                     <i class="plus icon"></i>
                 </button> <!--Create card-->
-            </form>
+            </div>
         </footer>
     </section>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
