@@ -1,6 +1,7 @@
 // Global variables go here
 let flashcards = readLocalFlashcards();
 let categoriesArray = [];
+const createCatButton = document.getElementById('createCatButton');
 
 // Grabs flashcards local storage, otherwise returns an empty array
 function readLocalFlashcards() {
@@ -28,8 +29,12 @@ function createCategory(newCategory) {
 
 // Load the categories from flashcards into categoriesArray
 function loadCategoriesArray() {
-    /*for (let i = 0; i < flashcards.length; i++) {
-        categoriesArray[i] = flashcards[i]['category']; 
-    }*/
     categoriesArray = flashcards.map(flashcard => flashcard.category);
 }
+
+createCatButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    $('.ui.modal')
+    .modal('show')
+;
+});
