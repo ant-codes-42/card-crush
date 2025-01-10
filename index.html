@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
+
 <body>
     <header>
         <h1>CARD CRUSH</h1>
@@ -34,13 +35,28 @@
             </ul> -->
         </div>
     </section>
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
-<script src="./assets/js/rolo.js"></script>
-<script src="./assets/js/logic.js"></script>
-<script src="./assets/js/form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+    <script src="./assets/js/logic.js"></script>
+    <script src="./assets/js/form.js"></script>
 </body>
+<div class="ui modal">
+    <div class="header">
+        Create a Card
+    </div>
+    <div>
+        <form>
+            <label for="front">Front:</label>
+            <input type="text" id="card-front" name="front" />
+            <label for="back">Back:</label>
+            <input type="text" id="card-back" name="back" />
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui button close" id="card-close-button">Cancel</div>
+        <div class="ui button" id="card-save-button">Save</div>
+    </div>
+</div>
+
 </html>
