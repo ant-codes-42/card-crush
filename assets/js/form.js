@@ -1,9 +1,9 @@
 // Global variables go here
-const createCatButton = document.getElementById('createCatButton');
-const categoryInput = document.getElementById('category-input');
-
+// const createCatButton = document.getElementById('createCatButton');
+const categoryInput = document.getElementById('categoryInput');
+const saveClick = document.getElementById(`card-save-button`);
 // Event listener for create category button click - calls createCategoryModal
-createCatButton.addEventListener('click', createCategoryModal);
+// createCatButton.addEventListener('click', createCategoryModal);
 
 // This is the master create category modal function - must contain everything needed within the modal (I think)
 function createCategoryModal(event) {
@@ -21,8 +21,15 @@ function createCategoryModal(event) {
             $('.ui.modal').modal('hide');
         });
 
-        $('#card-save-button').click(function () {
-        
+        $('#card-save-button').click(function () {   
+            const cardFront = document.getElementById(`card-front`).value;
+            const cardBack = document.getElementById(`card-back`).value;
+            if(!cardFront || !cardBack){
+                alert(`please finish your cards`);
+                return;
+            } else if(cardBack && cardFront){
+                alert(`card saved!`);
+            }   
         });
     }
 }
