@@ -1,5 +1,5 @@
 // Global variables go here
-const createCatButton = document.getElementById('create-cat-button');
+const createCatButton = document.getElementById('createCatButton');
 const categoryInput = document.getElementById('category-input');
 
 // Event listener for create category button click - calls createCategoryModal
