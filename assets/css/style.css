@@ -11,10 +11,6 @@ body {
   color: #424242;
 }
 
-h2 {
-  text-align: center;
-}
-
 li {
   list-style: none;
   margin-top: 20px;
@@ -24,6 +20,8 @@ li {
 label {
   color: #212121;
 }
+
+
 
 .card {
   background-color:	#FFF9C4;
