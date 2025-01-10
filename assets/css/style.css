@@ -21,15 +21,119 @@ label {
   color: #212121;
 }
 
+.roloSqButton {
+  background-color: #FFF9C4; 
+  color: #1A237E;
+  box-shadow: rgba(60, 64, 67, 0.2) 0 1px 2px 0, 
+              rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  border: none; 
+  padding: 20px 30px; 
+  font-size: 24px;
+  font-weight: bold;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: all 0.3s ease-in-out; 
+}
 
+.roloSqButton:hover {
+  background-color: #f0a833; 
+  box-shadow: rgba(60, 64, 67, 0.3) 0 3px 6px 0, 
+              rgba(60, 64, 67, 0.2) 0 3px 6px 4px;
+}
 
-.card {
-  background-color:	#FFF9C4;
-  border: 1px solid #eceff1;
+.roloCrButton {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  margin: 50px;
+  background-color: #e47068; 
+  color: #ffffff;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 0.2) 0 1px 2px 0, 
+              rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  border: 3px solid; 
+  padding: 20px 30px; 
+  font-size: 24px;
+  font-weight: bold;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border-radius: 190px; 
+  cursor: pointer; 
+  transition: all 0.3s ease-in-out; 
+
+  &:hover {
+    box-shadow: 0px 0 0 0 #e47068 inset  ;
+    background-color: #fff; 
+    color: #e47068;
+  }
+
+  &:active {
+    box-shadow: 0px 100px 0 0 #e47068 inset  ;
+  }
+}
+
+.shuffle {
+  background-color: #ff7043; 
+  font-size: 65px;
+  height: 200px;
+  width: 200px;
+
+  &:hover {
+    box-shadow: 0px 0 0 0 #ff7043 inset  ;
+    background-color: #fff; 
+    color: #ff7043;
+  }
+
+  &:active {
+    box-shadow: 0px 100px 0 0 #ff7043 inset  ;
+  }
+}
+
+.cardContainer {
+  background-color:	#fff9c4;
+  border: 1px solid #1A237E;
   border-radius: 8px;
   box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
     rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
   margin: 40px 20px;
   padding: 20px;
   width: 40vw;
+  display:flex;
+  justify-content: center;
+  flex-grow: 1;
+
+}
+
+
+.cardCustom {
+  display: inline-block;
+  width: 90vw;
+  max-width: 400px;
+  height: 70vh;
+  background: #FFFFFF;
+  padding-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: absolute;
+  will-change: transform;
+  transition: all 0.3s ease-in-out;
+}
+
+.cardStack {
+  flex-grow: 1;
+  padding-top: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.cardFront {
+  background-color: #FFF9C4;
+}
+
+.cardBack {
+  background-color: #f0a833;
+  display: none;
 }
