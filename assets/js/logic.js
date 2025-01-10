@@ -33,9 +33,9 @@ const redirectPage = function (url) {
     location.assign(url);
 }
 
-// Work in progress - create category in flashcards
+// WORK IN PROGRESS - create category in flashcards
 function createCategory(newCategory) {
-    flashcards.push(newCategory);
+    //flashcards.push(newCategory);
 }
 
 // Load the categories from flashcards into categoriesArray
