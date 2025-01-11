@@ -16,13 +16,13 @@ function storeLocalFlashcards(object) {
 
 // Grabs session category local storage, otherwise returns an empty string
 function readSessionCategory() {
-    const sessionCategory = localStorage.getItem("sessionCategory");
+    const sessionCategory = sessionStorage.getItem("sessionCategory");
     return sessionCategory ? sessionCategory : '';
 }
 
 // Stores the passed string to sessionCategory in local storage
 function storeSessionCategory(string) {
-    localStorage.setItem('sessionCategory', string);
+    sessionStorage.setItem('sessionCategory', string);
 }
 
 // This function to be used for redirect to another page (might not be needed)
