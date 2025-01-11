@@ -21,16 +21,53 @@ h1 {
 }
 
 h2 {
-  padding: 100px;
+
+  padding: 10px;
   text-align: center;
+  color:#1A237E;
+  font-weight: bold;
+  font-weight: 100;
 }
 
-.headerCustom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #1A237E;
-  color: #ffffff;
+.changeText{
+  text-align: center;
+  color: #1A237E;
+}
+
+/* ------------------------ Buttons ------------------------ */
+
+/* ------------- Sq Buttons ------------- */
+
+.sqCreate {
+  display: inline-block;
+  background-color: #ff7043; 
+  color:#ffffff;
+  font-size: 24px;
+  height: 50px;
+  width: 300px;
+  margin: 50px;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 0.2) 0 1px 2px 0, 
+              rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  border: 3px solid; 
+  font-weight: bold;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  cursor: pointer; 
+  transition: all 0.3s ease-in-out; 
+
+  &:hover {
+    box-shadow: 0px 0 0 0 #ff7043 inset;
+    background-color: #fff; 
+    color: #ff7043;
+  }
+
+  &:active {
+    box-shadow: 0px 5px #424242;
+    background-color: #ff7043;
+    transform: translateY(4px);
+    color:#ffffff;
+  }
+  
 }
 
 /* ------------------------ Buttons ------------------------ */
@@ -65,7 +102,8 @@ h2 {
   }
 }
 
-/* ------------- Smaller Circle Buttons ------------- */
+/* ------------- Cr Buttons ------------- */
+/* ------------- Smaller ------------- */
 
 .roloCrButton {
   display: inline-block;
@@ -100,7 +138,7 @@ h2 {
   }
 }
 
-/* ------------- Large Suffle ------------- */
+/* ------------- Large ------------- */
 
 .shuffle {
   background-color: #ff7043; 
@@ -150,6 +188,7 @@ h2 {
 /* ------------- flip ------------- */
 .cardCustom.flipped{
   transform: rotateX(180deg)
+
 }
 
 /* ------------- hover ------------- */
@@ -166,6 +205,7 @@ h2 {
   border-radius: 10px;
   border: 3px solid #1A237E;
   text-align: center;
+  color:#1A237E;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
@@ -176,13 +216,33 @@ h2 {
 
 .cardFront {
   background-color: #FFF9C4;
-  font-size: 24px;
-  color:#1A237E;
+  font-size: 30px;
 }
 
 .cardBack {
-  background-color: #f0a833;
-  font-size: 17px;
-  color:#ffffff;
+  background-color: #FFE0B2;
+  font-size: 24px;
   transform: rotateX(180deg);
+}
+
+/*---- Crush Effect -----*/
+
+.crushCard body {
+
+    background-color: #000;
+    margin: 0;
+    overflow: hidden;
+}
+
+#info {
+    color: white;
+    font-family: monospace;
+}
+
+.crushCard canvas {
+    position: absolute;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
 }

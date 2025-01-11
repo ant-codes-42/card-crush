@@ -15,7 +15,18 @@ function createCategoryModal(event) {
         sessionCategory = toString(categoryInput.value); // Store the category name in sessionCategory
         storeSessionCategory(sessionCategory); // Store the category name in session storage
         categoryInput.value = '';
-        $('.ui.modal').modal('show');
+
+        // initialize all modals
+        $('.coupled.modal').modal({
+        allowMultiple: true
+        });
+
+        // open second modal within first based on button selection
+        $('#modal2')
+        .modal('attach events', '#card-save-button');
+
+        // show first modal to user
+        $('#modal1').modal('show');
 
         $('#card-close-button').click(function () {
             $('.ui.modal').modal('hide');
