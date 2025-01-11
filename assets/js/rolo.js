@@ -23,6 +23,7 @@ function storeStackPosition() {
     sessionStorage.setItem('stackPosition', stackPosition);
 }
 
+
 // Function to filter flashcards by category
 function filterByCategory(category) {
     const filteredFlashcard = flashcards.find(flashcard => flashcard.category === category);
