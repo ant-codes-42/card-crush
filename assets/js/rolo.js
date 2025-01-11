@@ -5,8 +5,8 @@ let stackPosition = readStackPosition();
 
 const card = document.getElementById('card');
 
-const flip = function () {  
-    card.classList="animate__flipOutX"
+const flip = function () {
+    card.classList = "animate__flipOutX"
 }
 
 // Function to read the stack position from session storage
@@ -28,8 +28,9 @@ function filterByCategory(category) {
 
 // Function to build the study category array
 function buildStudyCategoryArray(sessionCategory) {
-    let stringCategory = JSON.stringify(filterByCategory(sessionCategory)); // these two lines needed two make a deep copy
-    studyCategory = JSON.parse(stringCategory);
+    /*const stringCategory = JSON.stringify(filterByCategory(sessionCategory));
+    studyCategory = JSON.parse(stringCategory);*/
+    studyCategory = JSON.parse(JSON.stringify(filterByCategory(sessionCategory))); // deep copy of filtered flashcards
 
     for (let i = 0; i < studyCategory.cards.length; i++) {
         studyCategory.cards[i].index = i;
@@ -91,6 +92,34 @@ function deleteCurrentFlashcard() {
             for (let j = 0; j < flashcards[i].cards.length; j++) {
                 if (flashcards[i].cards[j].index === currentCard.cards[0].index) {
                     flashcards[i].cards.splice(j, 1);
+                }
+            }
+        }
+    }
+}
+
+// Function to edit the current flashcard and update the flashcards array
+// UNTESTED - needs to be called from modal pop up and passed the new category, front, and back (if it works lmao)
+function editCurrentFlashcard(newCategory, newFront, newBack) {
+    if (newCategory !== currentCard.category) {
+        deleteCurrentFlashcard();
+        currentCard.category = newCategory;
+        flashcards.push({ category: newCategory, cards: [{ front: newFront, back: newBack }] });
+    } else {
+        for (let i = 0; i < studyCategory.cards.length; i++) {
+            if (studyCategory.cards[i].index === currentCard.cards[0].index) {
+                studyCategory.cards[i].front = newFront;
+                studyCategory.cards[i].back = newBack;
+            }
+        }
+
+        for (let i = 0; i < flashcards.length; i++) {
+            if (flashcards[i].category === currentCard.category) {
+                for (let j = 0; j < flashcards[i].cards.length; j++) {
+                    if (flashcards[i].cards[j].index === currentCard.cards[0].index) {
+                        flashcards[i].cards[j].front = newFront;
+                        flashcards[i].cards[j].back = newBack;
+                    }
                 }
             }
         }
