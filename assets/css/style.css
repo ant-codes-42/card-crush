@@ -1,25 +1,41 @@
-*,
-*::before,
-*::after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
-  font-size: 30px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   background-color: #E3F2FD;
   color: #424242;
 }
-
-li {
-  list-style: none;
-  margin-top: 20px;
-  display: block;
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
 }
 
-label {
-  color: #212121;
+h2 {
+  padding: 100px;
+  text-align: center;
 }
+
+.headerCustom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1A237E;
+  color: #ffffff;
+}
+
+/* ------------------------ Buttons ------------------------ */
+
+/* ------------- Sq Menu Buttons ------------- */
 
 .roloSqButton {
   background-color: #FFF9C4; 
@@ -34,13 +50,22 @@ label {
   border-radius: 5px; 
   cursor: pointer; 
   transition: all 0.3s ease-in-out; 
+
+  &:hover {
+    background-color: #f0a833; 
+    box-shadow: rgba(60, 64, 67, 0.3) 0 3px 6px 0, 
+                rgba(60, 64, 67, 0.2) 0 3px 6px 4px;
 }
 
-.roloSqButton:hover {
-  background-color: #f0a833; 
-  box-shadow: rgba(60, 64, 67, 0.3) 0 3px 6px 0, 
-              rgba(60, 64, 67, 0.2) 0 3px 6px 4px;
+  &:active {
+    box-shadow: 0px 5px #424242;
+    background-color: #ff7043;
+    transform: translateY(4px);
+    color:#ffffff;
+  }
 }
+
+/* ------------- Smaller Circle Buttons ------------- */
 
 .roloCrButton {
   display: inline-block;
@@ -62,15 +87,20 @@ label {
   transition: all 0.3s ease-in-out; 
 
   &:hover {
-    box-shadow: 0px 0 0 0 #e47068 inset  ;
+    box-shadow: 0px 0 0 0 #e47068 inset;
     background-color: #fff; 
     color: #e47068;
   }
 
   &:active {
-    box-shadow: 0px 100px 0 0 #e47068 inset  ;
+    box-shadow: 0px 5px #424242;
+    background-color: #e47068;
+    transform: translateY(4px);
+    color:#ffffff;
   }
 }
+
+/* ------------- Large Suffle ------------- */
 
 .shuffle {
   background-color: #ff7043; 
@@ -79,61 +109,80 @@ label {
   width: 200px;
 
   &:hover {
-    box-shadow: 0px 0 0 0 #ff7043 inset  ;
+    box-shadow: 0px 0 0 0 #ff7043 inset;
     background-color: #fff; 
     color: #ff7043;
   }
 
   &:active {
-    box-shadow: 0px 100px 0 0 #ff7043 inset  ;
+    box-shadow: 0px 5px #424242;
+    background-color: #ff7043;
+    transform: translateY(4px);
+    color:#ffffff;
   }
 }
 
+/* ------------------------ Cards ------------------------ */
+
 .cardContainer {
-  background-color:	#fff9c4;
-  border: 1px solid #1A237E;
-  border-radius: 8px;
-  box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
-    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
-  margin: 40px 20px;
-  padding: 20px;
-  width: 40vw;
-  display:flex;
-  justify-content: center;
-  flex-grow: 1;
-
-}
-
+  position: relative;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  }
 
 .cardCustom {
-  display: inline-block;
-  width: 90vw;
-  max-width: 400px;
-  height: 70vh;
-  background: #FFFFFF;
-  padding-bottom: 40px;
-  border-radius: 8px;
-  overflow: hidden;
   position: absolute;
-  will-change: transform;
-  transition: all 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  }
+
+/* ------------------------ Card effects ------------------------ */
+
+/* -------------  stack ------------- */
+.cardCustom:nth-child(1) { transform: translateY(0px); }
+.cardCustom:nth-child(2) { transform: translateY(20px); }
+.cardCustom:nth-child(3) { transform: translateY(40px); }
+
+/* ------------- flip ------------- */
+.cardCustom.flipped{
+  transform: rotateX(180deg)
 }
 
-.cardStack {
-  flex-grow: 1;
-  padding-top: 40px;
+/* ------------- hover ------------- */
+.cardCustom:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ------------- Card content ------------- */
+
+.cardFront, .cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 3px solid #1A237E;
   text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  z-index: 1;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .cardFront {
   background-color: #FFF9C4;
+  font-size: 24px;
+  color:#1A237E;
 }
 
 .cardBack {
   background-color: #f0a833;
-  display: none;
+  font-size: 17px;
+  color:#ffffff;
+  transform: rotateX(180deg);
 }
