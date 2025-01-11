@@ -3,14 +3,29 @@ let studyCategory = [];
 let currentCard = [];
 let stackPosition = readStackPosition();
 
+const crushCardButton = document.getElementById('crushCardButton');
+const nextCardButton = document.getElementById('nextCardButton');
+
 const card = document.getElementById('card');
+
+// Function to populate the category header
+function populateCatHeader() {
+    const categoryHeader = document.getElementById('categoryHeader');
+    if (sessionCategory) {
+        categoryHeader.innerHTML = '';
+        categoryHeader.innerHTML = sessionCategory;
+    } else {
+        categoryHeader.innerHTML = '';
+        categoryHeader.innerHTML = 'No Category Selected';
+    }
+}
 
 // Flips active card between front and back
 document.querySelectorAll('.cardCustom').forEach(card => {
     card.addEventListener('click', () => {
-      card.classList.toggle('flipped');
+        card.classList.toggle('flipped');
     });
-  });
+});
 
 // Function to read the stack position from session storage
 function readStackPosition() {
@@ -36,9 +51,12 @@ function buildStudyCategoryArray(sessionCategory) {
     studyCategory = JSON.parse(stringCategory);*/
     studyCategory = JSON.parse(JSON.stringify(filterByCategory(sessionCategory))); // deep copy of filtered flashcards
 
+    // This adds an index to each card in the study category array
     for (let i = 0; i < studyCategory.cards.length; i++) {
         studyCategory.cards[i].index = i;
     }
+
+    // Here we are adding an index to the same cards in the master flashcards array so we can match them up later
     for (let i = 0; i < flashcards.length; i++) {
         if (flashcards[i].category === sessionCategory) {
             for (let j = 0; j < flashcards[i].cards.length; j++) {
@@ -58,16 +76,18 @@ function shuffleStudyCategoryArray() {
 
 // Function to select and display the current flashcard
 function selectCurrentFlashcard() {
-    const card = document.querySelector('.CardContainer');
+    const cardFront = document.getElementById('card-front');
+    const cardBack = document.getElementById('card-back');
     currentCard = studyCategory.cards[stackPosition];
     if (stackPosition === studyCategory.cards.length) {
         stackPosition = 0;
     }
+    // This needs to be updated to populate the correct HTML elements
     card.innerHTML = `
         <div class="card animate__animated animate__flipInX">
             <div class="card-body">
-                <h5 class="card-title">${currentCard[0].front}</h5>
-                <p class="card-text">${currentCard[0].back}</p>
+                <h5 class="card-title">${currentCard.front}</h5>
+                <p class="card-text">${currentCard.back}</p>
             </div>
         </div>`;
 }
@@ -100,6 +120,8 @@ function deleteCurrentFlashcard() {
             }
         }
     }
+
+    storeLocalFlashcards();
 }
 
 // Function to edit the current flashcard and update the flashcards array
@@ -129,3 +151,16 @@ function editCurrentFlashcard(newCategory, newFront, newBack) {
         }
     }
 }
+
+populateCatHeader();
+buildStudyCategoryArray(sessionCategory);
+shuffleStudyCategoryArray();
+selectCurrentFlashcard();
+
+// Event listeners
+
+// Delete currentCard if crushCardButton is clicked
+crushCardButton.addEventListener('click', deleteCurrentFlashcard);
+
+// Move to next card if nextCardButton is clicked
+nextCardButton.addEventListener('click', nextCard);

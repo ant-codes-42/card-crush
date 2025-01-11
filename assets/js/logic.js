@@ -1,6 +1,8 @@
 // Global variables go here
 let flashcards = readLocalFlashcards();
 let sessionCategory = readSessionCategory();
+let cardFront = '';
+let cardBack = '';
 let categoriesArray = [];
 
 // Grabs flashcards local storage, otherwise returns an empty array
@@ -14,14 +16,16 @@ function readLocalFlashcards() {
 function storeLocalFlashcards() {
     let tempCardsArray = JSON.parse(JSON.stringify(flashcards)); // deep copy of flashcards array
 
-    function removeIndexKeys(array) {
+    // Temorarily removing this code from the mix, would normally sanitize the flashcards array of the index key before saving
+    // Might not be needed after all
+    /*function removeIndexKeys(array) {
         return array.map(obj => {
             const { index, ...rest } = obj;
             return rest;
         });
     }
 
-    tempCardsArray = removeIndexKeys(tempCardsArray);
+    tempCardsArray = removeIndexKeys(tempCardsArray);*/
     localStorage.setItem('flashcards', JSON.stringify(tempCardsArray));
 }
 
