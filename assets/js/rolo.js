@@ -4,9 +4,12 @@ let currentCard = [];
 
 const card = document.getElementById('card');
 
-const flip = function () {  
-    card.classList="animate__flipOutX"
-}
+document.querySelectorAll('.cardCustom').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  });
+
 
 // Function to filter flashcards by category
 function filterByCategory(category) {
