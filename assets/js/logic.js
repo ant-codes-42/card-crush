@@ -10,19 +10,30 @@ function readLocalFlashcards() {
 }
 
 // Stores the passed object to flashcards in local storage
-function storeLocalFlashcards(object) {
-    localStorage.setItem('flashcards', JSON.stringify(object));
+// UNTESTED - updated to sanitize the flashcards array before storing
+function storeLocalFlashcards() {
+    let tempCardsArray = JSON.parse(JSON.stringify(flashcards)); // deep copy of flashcards array
+
+    function removeIndexKeys(array) {
+        return array.map(obj => {
+            const { index, ...rest } = obj;
+            return rest;
+        });
+    }
+
+    tempCardsArray = removeIndexKeys(tempCardsArray);
+    localStorage.setItem('flashcards', JSON.stringify(tempCardsArray));
 }
 
 // Grabs session category local storage, otherwise returns an empty string
 function readSessionCategory() {
-    const sessionCategory = localStorage.getItem("sessionCategory");
+    const sessionCategory = sessionStorage.getItem("sessionCategory");
     return sessionCategory ? sessionCategory : '';
 }
 
 // Stores the passed string to sessionCategory in local storage
 function storeSessionCategory(string) {
-    localStorage.setItem('sessionCategory', string);
+    sessionStorage.setItem('sessionCategory', string);
 }
 
 // This function to be used for redirect to another page (might not be needed)
