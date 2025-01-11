@@ -16,28 +16,32 @@
         <h2>Enter your study information</h2>
     </header>
     <section>
-        <div>
-            <div class="ui card">
-                <form id="categoryForm" class="ui input">
+        <div class="ui piled segment ui very padded segment">
+            <div class="ui form">
+                <form id="categoryForm" class="feild">
                     <label for="Category">Category</label>
                     <input type="Text" id="categoryInput" name="cat" placeholder="Your Category Name...">
                 </form>
             </div>
-            <div class="ui equal width grid">
-                <button id="createCatButton" onclick="createCategoryModal(event)">Create New Cat</button> <!--create new catagory-->
+            <div class="">
+                <button id="createCatButton" class="sqCreate" onclick="createCategoryModal(event)">Create New Category</button> <!--create new catagory-->
+            </div>
+        </div>
+        <div id="noCats" class="ui warning message">
+            <div class="changeText">
+                <p>No categories yet! Add a new category to start CRUSHING IT!</p>
             </div>
         </div>
         <div class="ui equal width grid">
             <div class="row">
                 <div class="column">
-                    <div class="ui segment">
-                        <p>No categories yet! Add a new category to start CRUSHING IT!</p>
-                    </div>
-            <!-- <ul>
-                <button><li>cat1</li></button>
-                <button><li>cat2</li></button>
-                <button><li>cat3</li></button>
-            </ul> -->
+                    <div id="buttonContainer">
+                    <!-- <ul>
+                        <button><li>cat1</li></button>
+                        <button><li>cat2</li></button>
+                        <button><li>cat3</li></button>
+                    </ul> -->
+                     </div>
                 </div>
             </div>
         </div>
@@ -48,21 +52,37 @@
     <script src="./assets/js/logic.js"></script>
     <script src="./assets/js/form.js"></script>
 </body>
-<div class="ui modal">
+<div class="ui modal" id="modal1">
     <div class="header">
         Create a Card
     </div>
-    <div>
-        <form>
-            <label for="front">Front:</label>
-            <input type="text" id="card-front" name="front" />
-            <label for="back">Back:</label>
-            <input type="text" id="card-back" name="back" />
+    <div class="content">
+        <form class="ui form">
+            <div class="feild">
+                <label for="front">Front:</label>
+                <input type="text" id="card-front" name="front" placeholder="Enter text here...."/>
+            </div>
+            <div class="feild">
+                <label for="back">Back:</label>
+                <input type="text" id="card-back" name="back" placeholder="Enter text here...."/>
+            </div>
         </form>
     </div>
     <div class="actions">
-        <div class="ui button close" id="card-close-button">Cancel</div>
-        <div class="ui button" id="card-save-button">Save</div>
+        <div class="ui large grey button close" id="card-close-button">Cancel</div>
+        <div class="ui  large blue button" id="card-save-button">Save</div>
+    </div>
+</div>
+<div class="ui modal" id="modal2">
+    <div class="header">
+        Card Saved!
+    </div>
+    <div class="content changeText">
+         <p>what would you like to do next?</p>
+    </div>
+    <div class="actions">
+        <div class="ui top attached teal button" id="another-cat-button">Make another card for this category</div>
+        <div class="ui top attached orange button" id="study-button">START CRUSHING IT!</div>
     </div>
 </div>
 

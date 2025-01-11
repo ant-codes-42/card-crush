@@ -5,6 +5,7 @@ let stackPosition = readStackPosition();
 
 const card = document.getElementById('card');
 
+// Flips active card between front and back
 document.querySelectorAll('.cardCustom').forEach(card => {
     card.addEventListener('click', () => {
       card.classList.toggle('flipped');
