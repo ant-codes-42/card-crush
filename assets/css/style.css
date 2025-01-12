@@ -37,6 +37,29 @@ h2 {
 
 /* ------------- Sq Buttons ------------- */
 
+.smSqButton {
+  background-color: #e47068; 
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: 3px solid; 
+
+  &:hover {
+    box-shadow: 0px 0 0 0 #e47068 inset;
+    background-color: #fff; 
+    color: #e47068;
+  }
+
+  &:active {
+    box-shadow: 0px 5px #424242;
+    background-color: #e47068;
+    transform: translateY(4px);
+    color:#ffffff;
+}
+}
+
+
 .sqCreate {
   display: inline-block;
   background-color: #ff7043; 
