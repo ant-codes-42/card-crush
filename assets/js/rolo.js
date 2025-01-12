@@ -7,8 +7,6 @@ const crushCardButton = document.getElementById('crushCardButton');
 const nextCardButton = document.getElementById('nextCardButton');
 const addCardButton = document.getElementById('addCardButton');
 
-const card = document.getElementById('card');
-
 // Function to populate the category header
 function populateCatHeader() {
     const categoryHeader = document.getElementById('categoryHeader');
@@ -79,18 +77,16 @@ function shuffleStudyCategoryArray() {
 function selectCurrentFlashcard() {
     const cardFront = document.getElementById('card-front');
     const cardBack = document.getElementById('card-back');
+    const card = document.querySelector('.cardCustom');
     currentCard = studyCategory.cards[stackPosition];
-    if (stackPosition === studyCategory.cards.length) {
-        stackPosition = 0;
-    }
     // This needs to be updated to populate the correct HTML elements
-    /*card.innerHTML = `
+    card.innerHTML = `
         <div class="card animate__animated animate__flipInX">
             <div class="card-body">
                 <h5 class="card-title">${currentCard.front}</h5>
                 <p class="card-text">${currentCard.back}</p>
             </div>
-        </div>`;*/
+        </div>`;
 }
 
 // Function to move to next card
