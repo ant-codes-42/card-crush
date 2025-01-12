@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roledex</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
@@ -14,59 +16,59 @@
         <header class="ui fixed menu ui massive menu" style="background-color: #1A237E;color: #FFFFFF;">
             <div class="ui internally celled grid">
                 <div class="row">
-                   <div class="three wide column">
-                       <button class="roloSqButton">Edit</button>
-                   </div>
-                   <div class="ten wide column">
-                       <h1>Cat Name</h1>
-                   </div>
-                   <div class="three wide column">
-                       <button class="roloSqButton">Delete</button>
-                   </div>
-                </div>  
-           </div>
-       </header>
+                    <div class="three wide column">
+                        <button class="roloSqButton">Edit</button>
+                    </div>
+                    <div class="ten wide column">
+                        <h1 id="categoryHeader"></h1>
+                    </div>
+                    <div class="three wide column">
+                        <button class="roloSqButton">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </header>
     </section>
     <section class="ui center aligned container">
         <h2>CRUSH IT!</h2>
     </section>
     <section class="ui center aligned container">
         <!-- This div puts the flashcards in a stack-->
-         <div class="cardContainer">
+        <div class="cardContainer">
             <div class="cardCustom">
                 <!-- front of card -->
                 <div id="card-front" class="cardFront">
                     <!-- cards populate here addElement -->
-                    <p>card population here</p> 
+                    <p>card population here</p>
                 </div>
                 <!-- back of card -->
                 <div id="card-back" class="cardBack">
-                <!-- cards populate here addElement -->
-                <p>card population here</p> 
-                <!-- button options for deleting or going to the next card -->
+                    <!-- cards populate here addElement -->
+                    <p>card population here</p>
+                    <!-- button options for deleting or going to the next card -->
                     <div class="extra content">
                         <button class="ui green button">CRUSH</button>
                         <button class="ui orange button">Next</button>
-                    </div> 
+                    </div>
                 </div>
                 <!--Second Card-->
                 <!-- front of card -->
                 <div id="card-front" class="cardFront">
                     <!-- cards populate here addElement -->
-                    <p>card text</p> 
+                    <p>card text</p>
                 </div>
                 <!-- back of card -->
                 <div id="card-back" class="cardBack">
-                <!-- cards populate here addElement -->
-                    <p>card text</p> 
+                    <!-- cards populate here addElement -->
+                    <p>card text</p>
                     <!-- button options for deleting or going to the next card -->
                     <div class="">
-                        <button class="ui green button">CRUSH</button>
-                        <button class="ui orange button">Next</button>
-                    </div> 
+                        <button class="ui green button" id="crushCardButton">CRUSH</button>
+                        <button class="ui orange button" id="nextCardButton">Next</button>
+                    </div>
                 </div>
             </div>
-        </div>  
+        </div>
     </section>
     <section>
         <footer class="ui center aligned container">
@@ -84,9 +86,10 @@
         </footer>
     </section>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="./assets/js/logic.js"></script>
     <script src="./assets/js/rolo.js"></script>
 </body>
+
 </html>

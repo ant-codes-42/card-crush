@@ -21,6 +21,7 @@ h1 {
 }
 
 h2 {
+
   padding: 10px;
   text-align: center;
   color:#1A237E;
@@ -89,7 +90,12 @@ h2 {
     transform: translateY(4px);
     color:#ffffff;
   }
+  
 }
+
+/* ------------------------ Buttons ------------------------ */
+
+/* ------------- Sq Menu Buttons ------------- */
 
 .roloSqButton {
   background-color: #FFF9C4; 
@@ -205,6 +211,7 @@ h2 {
 /* ------------- flip ------------- */
 .cardCustom.flipped{
   transform: rotateX(180deg)
+
 }
 
 /* ------------- hover ------------- */
@@ -262,4 +269,3 @@ h2 {
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
 }
-
