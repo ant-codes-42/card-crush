@@ -3,7 +3,6 @@ let flashcards = readLocalFlashcards();
 let sessionCategory = readSessionCategory();
 let cardFront = '';
 let cardBack = '';
-let categoriesArray = [];
 
 // Grabs flashcards local storage, otherwise returns an empty array
 function readLocalFlashcards() {
@@ -51,9 +50,4 @@ const redirectPage = function (url) {
 // WORK IN PROGRESS - create category in flashcards
 function createCategory(newCategory) {
     //flashcards.push(newCategory);
-}
-
-// Load the categories from flashcards into categoriesArray
-function loadCategoriesArray() {
-    categoriesArray = flashcards.map(flashcard => flashcard.category);
 }
