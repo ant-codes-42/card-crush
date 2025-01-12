@@ -45,6 +45,7 @@ function createCategoryModal(event) {
         });
     }
 }
+document.getElementById('createCatButton').addEventListener('click', createCategoryModal);
 
 function cardSaveButton(event) {
     event.preventDefault();
@@ -55,14 +56,14 @@ function cardSaveButton(event) {
     
     let hasError = false;
 
-    if (!cardFront) {
+    if (!cardFront.value) {
         cardFrontError.textContent = `Front card empty`; //broken somewhere in these if statements
         cardFrontError.style.display = `block`;
         hasError = true;
     } else {
         cardFrontError.style.display = `none`;
     }
-    if (!cardBack) {
+    if (!cardBack.value) {
         cardBackError.textContent = `Back card empty`;
         cardBackError.style.display = `block`;
         hasError = true;
@@ -70,9 +71,11 @@ function cardSaveButton(event) {
         cardBackError.style.display = `none`;
     }
     if (hasError) {
-        preventDefault();
+        $(`#modal2`).modal(`show`);
         return;
     }
+    
+ 
     // if (!cardFront || !cardBack) {
     //     alert('Please finish your cards');
     //     return;
@@ -90,6 +93,5 @@ function cardSaveButton(event) {
         flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
         storeLocalFlashcards();
     }
-
     // alert('Card saved!');
 }
