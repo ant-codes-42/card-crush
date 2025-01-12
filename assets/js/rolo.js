@@ -6,6 +6,8 @@ let stackPosition = readStackPosition();
 const crushCardButton = document.getElementById('crushCardButton');
 const nextCardButton = document.getElementById('nextCardButton');
 const addCardButton = document.getElementById('addCardButton');
+const cardStack = document.getElementById("cardStack");
+const card = document.getElementById('card');
 
 // Function to populate the category header
 function populateCatHeader() {
@@ -19,12 +21,43 @@ function populateCatHeader() {
     }
 }
 
-// Flips active card between front and back
-document.querySelectorAll('.cardCustom').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+// Create Card from array stacked with flip ability
+function createFlashcards(cards) {
+    cardStack.innerHTML = ""; // Do we need to clear existing cards?
+
+    //loop to create number of cards in array
+    cards.forEach((card, studyCategory) => {
+        const cardWrapper = document.createElement("div");
+        cardWrapper.classList.add("cardCustom");
+
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("cardInd");
+
+        // Adjusts stacking effect
+        cardWrapper.style.transform = `translateY(${studyCategory* 20}px)`;
+
+        // Front side
+        const cardFront = document.createElement("div");
+        cardFront.classList.add("cardFront");
+        cardFront.innerText = card.front;
+
+        // Back side
+        const cardBack = document.createElement("div");
+        cardBack.classList.add("cardBack");
+        cardBack.innerText = card.back;
+
+        // Attaches cards to rolo html
+        cardElement.appendChild(cardFront);
+        cardElement.appendChild(cardBack);
+        cardWrapper.appendChild(cardElement);
+        cardStack.appendChild(cardWrapper);
+
+        // Flip functionality
+        cardElement.addEventListener("click", () => {
+            cardElement.classList.toggle("flipped");
+        });
     });
-});
+}
 
 // Function to read the stack position from session storage
 function readStackPosition() {
@@ -190,6 +223,7 @@ populateCatHeader();
 buildStudyCategoryArray(sessionCategory);
 shuffleStudyCategoryArray();
 selectCurrentFlashcard();
+createFlashcards(flashcards);
 
 // Event listeners
 
