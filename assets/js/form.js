@@ -8,10 +8,13 @@ const saveClick = document.getElementById(`card-save-button`);
 function createCategoryModal(event) {
     event.preventDefault();
     const categoryInput = document.getElementById('categoryInput');
+    const categoryError = document.getElementById('categoryError');
     if (!categoryInput.value) {
-        alert('Please enter a category name');
+        categoryError.textContent = 'Please enter a category name';
+        categoryError.style.display = 'block';
         return;
     } else {
+        categoryError.style.display = `none`;
         sessionCategory = categoryInput.value; // Store the category name in sessionCategory
         storeSessionCategory(sessionCategory); // Store the category name in session storage
         categoryInput.value = '';
@@ -47,11 +50,33 @@ function cardSaveButton(event) {
     event.preventDefault();
     const cardFront = document.getElementById('card-front').value;
     const cardBack = document.getElementById('card-back').value;
+    const cardBackError = document.getElementById('cardBackError');
+    const cardFrontError = document.getElementById('cardFrontError');
     
-    if (!cardFront || !cardBack) {
-        alert('Please finish your cards');
+    let hasError = false;
+
+    if (!cardFront) {
+        cardFrontError.textContent = `Front card empty`; //broken somewhere in these if statements
+        cardFrontError.style.display = `block`;
+        hasError = true;
+    } else {
+        cardFrontError.style.display = `none`;
+    }
+    if (!cardBack) {
+        cardBackError.textContent = `Back card empty`;
+        cardBackError.style.display = `block`;
+        hasError = true;
+    } else {
+        cardBackError.style.display = `none`;
+    }
+    if (hasError) {
+        preventDefault();
         return;
     }
+    // if (!cardFront || !cardBack) {
+    //     alert('Please finish your cards');
+    //     return;
+    // }
 
     // Find the category in the flashcards array
     let category = flashcards.find(flashcard => flashcard.category === sessionCategory);
@@ -66,5 +91,5 @@ function cardSaveButton(event) {
         storeLocalFlashcards();
     }
 
-    alert('Card saved!');
+    // alert('Card saved!');
 }
