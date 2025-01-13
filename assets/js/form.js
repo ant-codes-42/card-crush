@@ -100,7 +100,7 @@ function buildCategoryButtons() {
 
     categoriesArray.forEach(category => {
         const button = document.createElement('button');
-        button.classList.add('ui', 'button', 'card-category-button');
+        button.classList.add('circular', 'big', 'ui', 'teal', 'button', 'card-category-button');
         button.textContent = category;
         buttonContainer.appendChild(button);
     });
