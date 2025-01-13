@@ -34,41 +34,13 @@
     </section>
     <section class="ui center aligned container">
         <!-- This div puts the flashcards in a stack-->
-        <div class="cardContainer">
-            <div class="cardCustom">
-                <!-- front of card -->
-                <div id="card-front" class="cardFront">
-                    <!-- cards populate here addElement -->
-                    <p>card population here</p>
-                </div>
-                <!-- back of card -->
-                <div id="card-back" class="cardBack">
-                    <!-- cards populate here addElement -->
-                    <p>card population here</p>
-                    <!-- button options for deleting or going to the next card -->
-                    <div class="extra content">
-                        <button class="ui green button">CRUSH</button>
-                        <button class="ui orange button">Next</button>
-                    </div>
-                </div>
-                <!--Second Card-->
-                <!-- front of card -->
-                <div id="card-front" class="cardFront">
-                    <!-- cards populate here addElement -->
-                    <p>card text</p>
-                </div>
-                <!-- back of card -->
-                <div id="card-back" class="cardBack">
-                    <!-- cards populate here addElement -->
-                    <p>card text</p>
-                    <!-- button options for deleting or going to the next card -->
-                    <div class="">
-                        <button class="ui green button" id="crushCardButton">CRUSH</button>
-                        <button class="ui orange button" id="nextCardButton">Next</button>
-                    </div>
-                </div>
-            </div>
+        <div id="cardStack" class="cardContainer">
+            <!-- placeholder for cards-->
         </div>
+        <div class="">
+            <button class="ui green button" id="crushCardButton">CRUSH</button>
+            <button class="ui orange button" id="nextCardButton">Next</button>
+        </div>  
     </section>
     <section>
         <footer class="ui center aligned container">
@@ -79,7 +51,7 @@
                 <button onclick="shuffleStudyCategoryArray()" class="roloCrButton shuffle">
                     <i class="random icon"></i>
                 </button> <!--shuffle cards-->
-                <button class="roloCrButton">
+                <button class="roloCrButton" id="addCardButton">
                     <i class="plus icon"></i>
                 </button> <!--Create card-->
             </div>
@@ -91,5 +63,25 @@
     <script src="./assets/js/logic.js"></script>
     <script src="./assets/js/rolo.js"></script>
 </body>
-
+<div class="ui modal" id="modal3">
+    <div class="header">
+        Create a Card
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="feild">
+                <label for="front">Front:</label>
+                <input type="text" id="rolo-card-front" name="front" placeholder="Enter text here...." />
+            </div>
+            <div class="feild">
+                <label for="back">Back:</label>
+                <input type="text" id="rolo-card-back" name="back" placeholder="Enter text here...." />
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui large grey button close" id="card-close-button">Cancel</div>
+        <div class="ui  large blue button" id="card-save-button">Save</div>
+    </div>
+</div>
 </html>

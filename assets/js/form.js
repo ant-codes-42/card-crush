@@ -1,8 +1,9 @@
 // Global variables go here
 // const createCatButton = document.getElementById('createCatButton');
-const saveClick = document.getElementById(`card-save-button`);
+// const saveClick = document.getElementById(`card-save-button`);
 // Event listener for create category button click - calls createCategoryModal
 // createCatButton.addEventListener('click', createCategoryModal);
+let categoriesArray = [];
 
 // This is the master create category modal function - must contain everything needed within the modal (I think)
 function createCategoryModal(event) {
@@ -21,12 +22,12 @@ function createCategoryModal(event) {
 
         // initialize all modals
         $('.coupled.modal').modal({
-        allowMultiple: true
+            allowMultiple: true
         });
 
         // open second modal within first based on button selection
         $('#modal2')
-        .modal('attach events', '#card-save-button');
+            .modal('attach events', '#card-save-button');
 
         // show first modal to user
         $('#modal1').modal('show');
@@ -36,7 +37,7 @@ function createCategoryModal(event) {
         });
 
         $('#card-save-button').click(cardSaveButton);
-
+            console.log(`call save function`)
         $('#modal1').modal('attach events', '#another-card-button');
 
         $('#another-card-button').click(function () {
@@ -49,37 +50,29 @@ document.getElementById('createCatButton').addEventListener('click', createCateg
 
 function cardSaveButton(event) {
     event.preventDefault();
-    const cardFront = document.getElementById('card-front').value;
-    const cardBack = document.getElementById('card-back').value;
+    let cardFront = document.getElementById('card-front');
+    let cardBack = document.getElementById('card-back'); 
     const cardBackError = document.getElementById('cardBackError');
     const cardFrontError = document.getElementById('cardFrontError');
-    
-    let hasError = false;
 
-    if (!cardFront.value) {
-        cardFrontError.textContent = `Front card empty`; //broken somewhere in these if statements
+
+    if (cardFront.value.trim() == "") {
+        cardFrontError.textContent = `Front card empty`;
         cardFrontError.style.display = `block`;
-        hasError = true;
     } else {
         cardFrontError.style.display = `none`;
     }
-    if (!cardBack.value) {
+    if (cardBack.value.trim() == "") {
         cardBackError.textContent = `Back card empty`;
         cardBackError.style.display = `block`;
-        hasError = true;
     } else {
         cardBackError.style.display = `none`;
     }
-    if (hasError) {
-        $(`#modal2`).modal(`show`);
-        return;
+    if (cardFront.value == "" || cardBack.value == "") {
+        $(`#modal2`).modal(`hide`);
+        $(`#modal1`).modal(`show`);
+        
     }
-    
- 
-    // if (!cardFront || !cardBack) {
-    //     alert('Please finish your cards');
-    //     return;
-    // }
 
     // Find the category in the flashcards array
     let category = flashcards.find(flashcard => flashcard.category === sessionCategory);
@@ -93,5 +86,36 @@ function cardSaveButton(event) {
         flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
         storeLocalFlashcards();
     }
-    // alert('Card saved!');
+
+    return;
 }
+
+// Load the categories from flashcards into categoriesArray
+function loadCategoriesArray() {
+    categoriesArray = flashcards.map(flashcard => flashcard.category);
+}
+
+function buildCategoryButtons() {
+    const buttonContainer = document.getElementById('buttonContainer');
+    buttonContainer.innerHTML = '';
+    categoriesArray.forEach(category => {
+        const button = document.createElement('button');
+        button.classList.add('ui', 'button', 'card-category-button');
+        button.textContent = category;
+        buttonContainer.appendChild(button);
+    });
+}
+
+loadCategoriesArray();
+buildCategoryButtons();
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryButtons = document.querySelectorAll('.card-category-button');
+
+    for (i of categoryButtons) {
+        i.addEventListener('click', function () {
+            sessionCategory = this.textContent;
+            storeSessionCategory(sessionCategory);
+            redirectPage('./rolo.html');
+        });
+    }
+});

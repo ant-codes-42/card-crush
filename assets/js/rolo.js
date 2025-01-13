@@ -5,7 +5,8 @@ let stackPosition = readStackPosition();
 
 const crushCardButton = document.getElementById('crushCardButton');
 const nextCardButton = document.getElementById('nextCardButton');
-
+const addCardButton = document.getElementById('addCardButton');
+const cardStack = document.getElementById("cardStack");
 const card = document.getElementById('card');
 
 // Function to populate the category header
@@ -20,12 +21,43 @@ function populateCatHeader() {
     }
 }
 
-// Flips active card between front and back
-document.querySelectorAll('.cardCustom').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+// Create Card from array stacked with flip ability
+function createFlashcards(cards) {
+    cardStack.innerHTML = ""; // Do we need to clear existing cards?
+
+    //loop to create number of cards in array
+    cards.forEach((card, studyCategory) => {
+        const cardWrapper = document.createElement("div");
+        cardWrapper.classList.add("cardCustom");
+
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("cardInd");
+
+        // Adjusts stacking effect
+        cardWrapper.style.transform = `translateY(${studyCategory* 20}px)`;
+
+        // Front side
+        const cardFront = document.createElement("div");
+        cardFront.classList.add("cardFront");
+        cardFront.innerText = card.front;
+
+        // Back side
+        const cardBack = document.createElement("div");
+        cardBack.classList.add("cardBack");
+        cardBack.innerText = card.back;
+
+        // Attaches cards to rolo html
+        cardElement.appendChild(cardFront);
+        cardElement.appendChild(cardBack);
+        cardWrapper.appendChild(cardElement);
+        cardStack.appendChild(cardWrapper);
+
+        // Flip functionality
+        cardElement.addEventListener("click", () => {
+            cardElement.classList.toggle("flipped");
+        });
     });
-});
+}
 
 // Function to read the stack position from session storage
 function readStackPosition() {
@@ -83,13 +115,13 @@ function selectCurrentFlashcard() {
         stackPosition = 0;
     }
     // This needs to be updated to populate the correct HTML elements
-    card.innerHTML = `
+    /*card.innerHTML = `
         <div class="card animate__animated animate__flipInX">
             <div class="card-body">
                 <h5 class="card-title">${currentCard.front}</h5>
                 <p class="card-text">${currentCard.back}</p>
             </div>
-        </div>`;
+        </div>`;*/
 }
 
 // Function to move to next card
@@ -152,10 +184,48 @@ function editCurrentFlashcard(newCategory, newFront, newBack) {
     }
 }
 
+// Function for saving a new card and saving (same as the one in form.js for index.html)
+function cardSaveButton(event) {
+    event.preventDefault();
+    const cardFront = document.getElementById('rolo-card-front').value;
+    const cardBack = document.getElementById('rolo-card-back').value;
+
+    if (!cardFront || !cardBack) {
+        alert('Please finish your cards');
+        return;
+    }
+
+    // Find the category in the flashcards array
+    let category = flashcards.find(flashcard => flashcard.category === sessionCategory);
+
+    if (category) {
+        // If the category exists, add the new card to the existing category
+        category.cards.push({ front: cardFront, back: cardBack });
+        storeLocalFlashcards();
+    } else {
+        // If the category does not exist, create a new category with the card
+        flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
+        storeLocalFlashcards();
+    }
+
+    $('#modal3').modal('hide');
+}
+
+function cardAddRolo() {
+    $('#modal3').modal('show');
+
+    $('#card-close-button').click(function () {
+        $('.ui.modal').modal('hide');
+    });
+
+    $('#card-save-button').click(cardSaveButton);
+}
+
 populateCatHeader();
 buildStudyCategoryArray(sessionCategory);
 shuffleStudyCategoryArray();
 selectCurrentFlashcard();
+createFlashcards(flashcards);
 
 // Event listeners
 
@@ -164,3 +234,5 @@ crushCardButton.addEventListener('click', deleteCurrentFlashcard);
 
 // Move to next card if nextCardButton is clicked
 nextCardButton.addEventListener('click', nextCard);
+
+addCardButton.addEventListener('click', cardAddRolo);
