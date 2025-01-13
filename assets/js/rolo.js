@@ -6,6 +6,7 @@ let stackPosition = readStackPosition();
 const crushCardButton = document.getElementById('crushCardButton');
 const nextCardButton = document.getElementById('nextCardButton');
 const addCardButton = document.getElementById('addCardButton');
+const shuffleCardButton = document.getElementById('shuffleCardButton');
 const cardStack = document.getElementById("cardStack");
 const card = document.getElementById('card');
 
@@ -22,11 +23,13 @@ function populateCatHeader() {
 }
 
 // Create Card from array stacked with flip ability
-function createFlashcards(cards) {
+function createFlashcards() {
     cardStack.innerHTML = ""; // Do we need to clear existing cards?
 
+    let offset = 0;
+
     //loop to create number of cards in array
-    cards.forEach((card, studyCategory) => {
+    for (const card of studyCategory.cards) {
         const cardWrapper = document.createElement("div");
         cardWrapper.classList.add("cardCustom");
 
@@ -34,7 +37,10 @@ function createFlashcards(cards) {
         cardElement.classList.add("cardInd");
 
         // Adjusts stacking effect
-        cardWrapper.style.transform = `translateY(${studyCategory* 20}px)`;
+        cardWrapper.style.transform = `translateY(${offset * 20}px)`;
+
+        // Increment offset for the next card
+        offset++;
 
         // Front side
         const cardFront = document.createElement("div");
@@ -56,7 +62,7 @@ function createFlashcards(cards) {
         cardElement.addEventListener("click", () => {
             cardElement.classList.toggle("flipped");
         });
-    });
+    }
 }
 
 // Function to read the stack position from session storage
@@ -79,8 +85,6 @@ function filterByCategory(category) {
 
 // Function to build the study category array
 function buildStudyCategoryArray(sessionCategory) {
-    /*const stringCategory = JSON.stringify(filterByCategory(sessionCategory));
-    studyCategory = JSON.parse(stringCategory);*/
     studyCategory = JSON.parse(JSON.stringify(filterByCategory(sessionCategory))); // deep copy of filtered flashcards
 
     // This adds an index to each card in the study category array
@@ -100,9 +104,19 @@ function buildStudyCategoryArray(sessionCategory) {
 
 // Function to shuffle the study category array
 function shuffleStudyCategoryArray() {
-    for (let i = studyCategory.cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [studyCategory.cards[i], studyCategory.cards[j]] = [studyCategory.cards[j], studyCategory.cards[i]];
+    if (studyCategory.cards.length < 1) {
+        $('.shuffle').popup({
+            on: 'manual',
+            position: 'top center',
+            content: 'Please select a category first'
+        });
+
+        $('.shuffle').popup('show');
+    } else {
+        for (let i = studyCategory.cards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [studyCategory.cards[i], studyCategory.cards[j]] = [studyCategory.cards[j], studyCategory.cards[i]];
+        }
     }
 }
 
@@ -113,13 +127,13 @@ function selectCurrentFlashcard() {
     const card = document.querySelector('.cardCustom');
     currentCard = studyCategory.cards[stackPosition];
     // This needs to be updated to populate the correct HTML elements
-    card.innerHTML = `
+    /*card.innerHTML = `
         <div class="card animate__animated animate__flipInX">
             <div class="card-body">
                 <h5 class="card-title">${currentCard.front}</h5>
                 <p class="card-text">${currentCard.back}</p>
             </div>
-        </div>`;
+        </div>`;*/
 }
 
 // Function to move to next card
@@ -136,15 +150,15 @@ function nextCard() {
 // Function to delete the current flashcard from the study category array and flashcards array
 function deleteCurrentFlashcard() {
     for (let i = 0; i < studyCategory.cards.length; i++) {
-        if (studyCategory.cards[i].index === currentCard.cards[0].index) {
+        if (studyCategory.cards[i].index === currentCard.index) {
             studyCategory.cards.splice(i, 1);
         }
     }
 
     for (let i = 0; i < flashcards.length; i++) {
-        if (flashcards[i].category === currentCard.category) {
+        if (flashcards[i].category === sessionCategory) {
             for (let j = 0; j < flashcards[i].cards.length; j++) {
-                if (flashcards[i].cards[j].index === currentCard.cards[0].index) {
+                if (flashcards[i].cards[j].index === currentCard.index) {
                     flashcards[i].cards.splice(j, 1);
                 }
             }
@@ -152,6 +166,8 @@ function deleteCurrentFlashcard() {
     }
 
     storeLocalFlashcards();
+    createFlashcards();
+    nextCard();
 }
 
 // Function to edit the current flashcard and update the flashcards array
@@ -163,7 +179,7 @@ function editCurrentFlashcard(newCategory, newFront, newBack) {
         flashcards.push({ category: newCategory, cards: [{ front: newFront, back: newBack }] });
     } else {
         for (let i = 0; i < studyCategory.cards.length; i++) {
-            if (studyCategory.cards[i].index === currentCard.cards[0].index) {
+            if (studyCategory.cards[i].index === currentCard.index) {
                 studyCategory.cards[i].front = newFront;
                 studyCategory.cards[i].back = newBack;
             }
@@ -172,7 +188,7 @@ function editCurrentFlashcard(newCategory, newFront, newBack) {
         for (let i = 0; i < flashcards.length; i++) {
             if (flashcards[i].category === currentCard.category) {
                 for (let j = 0; j < flashcards[i].cards.length; j++) {
-                    if (flashcards[i].cards[j].index === currentCard.cards[0].index) {
+                    if (flashcards[i].cards[j].index === currentCard.index) {
                         flashcards[i].cards[j].front = newFront;
                         flashcards[i].cards[j].back = newBack;
                     }
@@ -197,33 +213,64 @@ function cardSaveButton(event) {
     let category = flashcards.find(flashcard => flashcard.category === sessionCategory);
 
     if (category) {
+        let existCheck = category.cards.some(card => card.front === cardFront && card.back === cardBack);
+        if (!existCheck) {
         // If the category exists, add the new card to the existing category
         category.cards.push({ front: cardFront, back: cardBack });
-        storeLocalFlashcards();
+        }
     } else {
         // If the category does not exist, create a new category with the card
         flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
-        storeLocalFlashcards();
     }
 
+    storeLocalFlashcards();
+
+    existCheck = studyCategory.cards.some(card => card.front === cardFront && card.back === cardBack);
+    
+    if (!existCheck) {
+    studyCategory.cards.push({ front: cardFront, back: cardBack });
+    }
+
+    cardFront.value = '';
+    cardBack.value = '';
+
     $('#modal3').modal('hide');
+
+    createFlashcards();
+
+    if (!currentCard) {
+        selectCurrentFlashcard();
+    }
 }
 
 function cardAddRolo() {
-    $('#modal3').modal('show');
+    if (sessionCategory) {
+        $('#modal3').modal('show');
 
-    $('#card-close-button').click(function () {
-        $('.ui.modal').modal('hide');
-    });
+        $('#card-close-button').click(function () {
+            $('.ui.modal').modal('hide');
+        });
 
-    $('#card-save-button').click(cardSaveButton);
+        $('#card-save-button').click(cardSaveButton);
+    } else {
+        addCardButton.setAttribute('data-content', 'Please select a category first');
+
+        $('#addCardButton').popup({
+            on: 'manual',
+            position: 'top center'
+        });
+
+        $('#addCardButton').popup('show');
+    }
 }
 
 populateCatHeader();
 buildStudyCategoryArray(sessionCategory);
-shuffleStudyCategoryArray();
+if (studyCategory.cards.length > 0) {
+    shuffleStudyCategoryArray();
+}
 selectCurrentFlashcard();
-createFlashcards(flashcards);
+createFlashcards();
 
 // Event listeners
 
@@ -234,3 +281,9 @@ crushCardButton.addEventListener('click', deleteCurrentFlashcard);
 nextCardButton.addEventListener('click', nextCard);
 
 addCardButton.addEventListener('click', cardAddRolo);
+
+shuffleCardButton.addEventListener('click', () => {
+    shuffleStudyCategoryArray();
+    createFlashcards();
+    selectCurrentFlashcard();
+});
