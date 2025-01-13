@@ -126,41 +126,17 @@ function shuffleStudyCategoryArray() {
 
 // Function to select and display the current flashcard
 function selectCurrentFlashcard() {
-    const cardFront = document.getElementById('card-front');
-    const cardBack = document.getElementById('card-back');
-    const card = document.querySelector('.cardCustom');
     currentCard = studyCategory.cards[0];
-    // This needs to be updated to populate the correct HTML elements
-    /*card.innerHTML = `
-        <div class="card animate__animated animate__flipInX">
-            <div class="card-body">
-                <h5 class="card-title">${currentCard.front}</h5>
-                <p class="card-text">${currentCard.back}</p>
-            </div>
-        </div>`;*/
 }
 
 // Function to move to next card
 function nextCard() {
-    /*stackPosition++;
-    if (stackPosition === studyCategory.cards.length) {
-        stackPosition = 0;
-    }
-    storeStackPosition();
-    // This all happens instantly so something should happen right here for the animation...
-    selectCurrentFlashcard();*/
     const shiftCard = studyCategory.cards.shift();
     studyCategory.cards.push(shiftCard);
 }
 
 // Function to delete the current flashcard from the study category array and flashcards array
 function deleteCurrentFlashcard() {
-    /*for (let i = 0; i < studyCategory.cards.length; i++) {
-        if (studyCategory.cards[i].index === currentCard.index) {
-            studyCategory.cards.splice(i, 1);
-        }
-    }*/
-
     studyCategory.cards.shift();
 
     for (let i = 0; i < flashcards.length; i++) {
@@ -176,34 +152,6 @@ function deleteCurrentFlashcard() {
     storeLocalFlashcards();
     createFlashcards();
     selectCurrentFlashcard();
-}
-
-// Function to edit the current flashcard and update the flashcards array
-// UNTESTED - needs to be called from modal pop up and passed the new category, front, and back (if it works lmao)
-function editCurrentFlashcard(newCategory, newFront, newBack) {
-    /*if (newCategory !== sessionCategory) {
-        deleteCurrentFlashcard();
-        currentCard.category = newCategory;
-        flashcards.push({ category: newCategory, cards: [{ front: newFront, back: newBack }] });
-    } else {
-        for (let i = 0; i < studyCategory.cards.length; i++) {
-            if (studyCategory.cards[i].index === currentCard.index) {
-                studyCategory.cards[i].front = newFront;
-                studyCategory.cards[i].back = newBack;
-            }
-        }
-
-        for (let i = 0; i < flashcards.length; i++) {
-            if (flashcards[i].category === currentCard.category) {
-                for (let j = 0; j < flashcards[i].cards.length; j++) {
-                    if (flashcards[i].cards[j].index === currentCard.index) {
-                        flashcards[i].cards[j].front = newFront;
-                        flashcards[i].cards[j].back = newBack;
-                    }
-                }
-            }
-        }
-    }*/
 }
 
 // Function to edit the name of the current category
