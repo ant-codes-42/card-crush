@@ -99,17 +99,25 @@ function loadCategoriesArray() {
 
 function buildCategoryButtons() {
     const buttonContainer = document.getElementById('buttonContainer');
+
     buttonContainer.innerHTML = '';
+
     categoriesArray.forEach(category => {
         const button = document.createElement('button');
         button.classList.add('ui', 'button', 'card-category-button');
         button.textContent = category;
         buttonContainer.appendChild(button);
     });
+
+    if (categoriesArray.length === 0) {
+        const noCats = document.getElementById('noCats');
+        noCats.classList.remove('hidden');
+    }
 }
 
 loadCategoriesArray();
 buildCategoryButtons();
+
 document.addEventListener('DOMContentLoaded', function () {
     const categoryButtons = document.querySelectorAll('.card-category-button');
 
