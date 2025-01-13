@@ -10,12 +10,19 @@ body {
   color: #424242;
 }
 
+h1 {
+  text-align: center;
+  padding-top: 15px;
+}
+
 h2 {
 
   text-align: center;
   color:#1A237E;
   font-weight: bold;
   font-weight: 100;
+  padding-bottom: 15px;
+  padding-top: 8px;
 }
 
 .catHeader {
@@ -64,7 +71,7 @@ h2 {
   font-size: 24px;
   height: 50px;
   width: 300px;
-  margin: 50px;
+  margin-top: 50px;
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.2) 0 1px 2px 0, 
               rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
@@ -297,6 +304,20 @@ h2 {
   .sqCreate, .roloCrButton {
       width: 100%;
       font-size: 18px;
+      margin: 5px;
+  }
+
+  .shuffle {
+    font-size: 26px;
+    max-height:150px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .roloSqButton  {
+    width: 100%;
+    font-size: 20px;
+    padding: 5px;
   }
 }
 
