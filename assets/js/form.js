@@ -10,7 +10,8 @@ function createCategoryModal(event) {
     event.preventDefault();
     const categoryInput = document.getElementById('categoryInput');
     if (!categoryInput.value) {
-        alert('Please enter a category name');
+        categoryError.textContent = 'Please enter a category name';
+        categoryError.style.display = 'block';
         return;
     } else {
         sessionCategory = categoryInput.value; // Store the category name in sessionCategory
@@ -33,7 +34,7 @@ function createCategoryModal(event) {
             $('.ui.modal').modal('hide');
         });
 
-        $('#card-save-button').click(cardSaveButton);
+        $('#card-save-button').off(`click`).on(`click` , cardSaveButton);
 
         $('#modal1').modal('attach events', '#another-card-button');
 
@@ -46,13 +47,30 @@ function createCategoryModal(event) {
 
 function cardSaveButton(event) {
     event.preventDefault();
-    const cardFront = document.getElementById('card-front').value;
-    const cardBack = document.getElementById('card-back').value;
 
-    if (!cardFront || !cardBack) {
-        alert('Please finish your cards');
+    let cardFront = document.getElementById('card-front').value;
+    let cardBack = document.getElementById('card-back').value;
+    const cardBackError = document.getElementById('cardBackError');
+    const cardFrontError = document.getElementById('cardFrontError');
+
+    if (cardFront.trim() == "") {
+        cardFrontError.textContent = `Front card empty`;
+        cardFrontError.style.display = `block`;
+    } else {
+        cardFrontError.style.display = `none`;
+    }
+    if (cardBack.trim() == "") {
+        cardBackError.textContent = `Back card empty`;
+        cardBackError.style.display = `block`;
+    } else {
+        cardBackError.style.display = `none`;
+    }
+    if (cardFront == "" || cardBack == "") {
+        $(`#modal1`).modal(`show`);
+        $(`#modal2`).modal(`hide`);
         return;
     }
+
 
     // Find the category in the flashcards array
     let category = flashcards.find(flashcard => flashcard.category === sessionCategory);
@@ -66,8 +84,12 @@ function cardSaveButton(event) {
         flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
         storeLocalFlashcards();
     }
-
-    alert('Card saved!');
+    $(`#modal1`).modal(`hide`);
+    $('#modal2').modal({
+        closable: false
+        })
+        .modal('show')
+        ;
 }
 
 // Load the categories from flashcards into categoriesArray
@@ -77,17 +99,25 @@ function loadCategoriesArray() {
 
 function buildCategoryButtons() {
     const buttonContainer = document.getElementById('buttonContainer');
+
     buttonContainer.innerHTML = '';
+
     categoriesArray.forEach(category => {
         const button = document.createElement('button');
         button.classList.add('ui', 'button', 'card-category-button');
         button.textContent = category;
         buttonContainer.appendChild(button);
     });
+
+    if (categoriesArray.length === 0) {
+        const noCats = document.getElementById('noCats');
+        noCats.classList.remove('hidden');
+    }
 }
 
 loadCategoriesArray();
 buildCategoryButtons();
+
 document.addEventListener('DOMContentLoaded', function () {
     const categoryButtons = document.querySelectorAll('.card-category-button');
 

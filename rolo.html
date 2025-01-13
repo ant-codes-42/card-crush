@@ -66,7 +66,7 @@
                         </button> <!--Back to homepage-->
                 </div>
                 <div class="center aligned column">
-                        <button onclick="shuffleStudyCategoryArray()" class="roloCrButton shuffle">
+                        <button class="roloCrButton shuffle" id="shuffleCardButton">
                             <i class="random icon"></i>
                         </button> <!--shuffle cards-->
                 </div>
@@ -112,4 +112,42 @@
     </div>
 
 </body>
+<div class="ui modal" id="modal3">
+    <div class="header">
+        Create a Card
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="feild">
+                <label for="front">Front:</label>
+                <input type="text" id="rolo-card-front" name="front" placeholder="Enter text here...." />
+            </div>
+            <div class="feild">
+                <label for="back">Back:</label>
+                <input type="text" id="rolo-card-back" name="back" placeholder="Enter text here...." />
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui large grey button close" id="card-close-button">Cancel</div>
+        <div class="ui  large blue button" id="card-save-button">Save</div>
+    </div>
+</div>
+<div class="ui modal" id="modal4">
+    <div class="header">
+        Edit Current Category
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="feild">
+                <label for="category">Category:</label>
+                <input type="text" id="rolo-category" name="category" />
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui large grey button close" id="category-close-button">Cancel</div>
+        <div class="ui  large blue button" id="category-save-button">Save</div>
+    </div>
+</div>
 </html>

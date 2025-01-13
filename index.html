@@ -19,9 +19,10 @@
     <section>
         <div class="ui piled segment ui very padded segment">
             <div class="ui form">
-                <form id="categoryForm" class="feild">
+                <form id="categoryForm" class="field">
                     <label for="Category">Category</label>
                     <input type="Text" id="categoryInput" name="cat" placeholder="Your Category Name...">
+                    <div id="categoryError" class="ui red message" style="display: none;"></div>
                 </form>
             </div>
             <div class="">
@@ -29,7 +30,7 @@
                     Category</button> <!--create new catagory-->
             </div>
         </div>
-        <div id="noCats" class="ui warning message">
+        <div id="noCats" class="ui warning message hidden">
             <div class="changeText">
                 <p>No categories yet! Add a new category to start CRUSHING IT!</p>
             </div>
@@ -37,7 +38,7 @@
         <div class="ui equal width grid">
             <div class="row">
                 <div class="column">
-                    <div id="buttonContainer">
+                    <div id="ui equal width grid buttonContainer">
                         <!-- <ul>
                         <button><li>cat1</li></button>
                         <button><li>cat2</li></button>
@@ -48,25 +49,33 @@
             </div>
         </div>
     </section>
+
+<!--------------------- JS Scripts ------------------------>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="./assets/js/logic.js"></script>
     <script src="./assets/js/form.js"></script>
 </body>
+
+ <!--------------------- Modals ------------------------>
+
 <div class="ui modal" id="modal1">
     <div class="header">
         Create a Card
     </div>
     <div class="content">
         <form class="ui form">
-            <div class="feild">
+            <div class="field">
                 <label for="front">Front:</label>
                 <input type="text" id="card-front" name="front" placeholder="Enter text here...." />
+                <div id="cardFrontError" class="ui red message" style="display: none;"></div>
             </div>
-            <div class="feild">
+            <div class="field">
                 <label for="back">Back:</label>
                 <input type="text" id="card-back" name="back" placeholder="Enter text here...." />
+                <div id="cardBackError" class="ui red message" style="display: none;"></div>
             </div>
         </form>
     </div>
@@ -80,7 +89,7 @@
         Card Saved!
     </div>
     <div class="content changeText">
-        <p>what would you like to do next?</p>
+        <p>What would you like to do next?</p>
     </div>
     <div class="actions">
         <div class="ui top attached teal button" id="another-card-button">Make another card for this category</div>
