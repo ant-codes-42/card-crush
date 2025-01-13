@@ -25,9 +25,11 @@
                     <div id="categoryError" class="ui red message" style="display: none;"></div>
                 </form>
             </div>
-            <div class="">
-                <button id="createCatButton" class="sqCreate" onclick="createCategoryModal(event)">Create New
-                    Category</button> <!--create new catagory-->
+            <div class="ui two column centered grid">
+                <div class="center aligned column">
+                    <button id="createCatButton" class="sqCreate" onclick="createCategoryModal(event)">Create New
+                        Category</button> <!--create new catagory-->
+                </div>
             </div>
         </div>
         <div id="noCats" class="ui warning message hidden">
@@ -36,9 +38,9 @@
             </div>
         </div>
         <div class="ui equal width grid">
-            <div class="row">
+            <div class="stackable row">
                 <div class="column">
-                    <div id="ui equal width grid buttonContainer">
+                    <div id="buttonContainer">
                         <!-- <ul>
                         <button><li>cat1</li></button>
                         <button><li>cat2</li></button>
