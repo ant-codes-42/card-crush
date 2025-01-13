@@ -1,8 +1,4 @@
 // Global variables go here
-// const createCatButton = document.getElementById('createCatButton');
-const saveClick = document.getElementById(`card-save-button`);
-// Event listener for create category button click - calls createCategoryModal
-// createCatButton.addEventListener('click', createCategoryModal);
 let categoriesArray = [];
 
 // This is the master create category modal function - must contain everything needed within the modal (I think)
