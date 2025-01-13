@@ -17,13 +17,13 @@
             <div class="ui internally celled grid">
                 <div class="row">
                     <div class="three wide column">
-                        <button class="roloSqButton">Edit</button>
+                        <button class="roloSqButton" id="editCatButton">Edit</button>
                     </div>
                     <div class="ten wide column">
                         <h1 id="categoryHeader"></h1>
                     </div>
                     <div class="three wide column">
-                        <button class="roloSqButton">Delete</button>
+                        <button class="roloSqButton" id="deleteCatButton">Delete</button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
     <section class="ui center aligned container">
         <h2>CRUSH IT!</h2>
     </section>
-    <section class="ui center aligned container">
+    <section class="ui center aligned container" id="cardSection">
         <!-- This div puts the flashcards in a stack-->
         <div id="cardStack" class="cardContainer">
             <!-- placeholder for cards-->
@@ -82,6 +82,23 @@
     <div class="actions">
         <div class="ui large grey button close" id="card-close-button">Cancel</div>
         <div class="ui  large blue button" id="card-save-button">Save</div>
+    </div>
+</div>
+<div class="ui modal" id="modal4">
+    <div class="header">
+        Edit Current Category
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="feild">
+                <label for="category">Category:</label>
+                <input type="text" id="rolo-category" name="category" />
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui large grey button close" id="category-close-button">Cancel</div>
+        <div class="ui  large blue button" id="category-save-button">Save</div>
     </div>
 </div>
 </html>

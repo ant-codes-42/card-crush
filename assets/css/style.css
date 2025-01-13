@@ -185,6 +185,15 @@ h2 {
 
 /* ------------------------ Cards ------------------------ */
 
+#cardSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 75vh;
+  padding-top: 20px;
+}
+
 .cardContainer {
   position: relative;
   width: 300px;
@@ -276,4 +285,20 @@ h2 {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .roloCrButton {
+    max-height: 80px;
+    max-width: 80px;
+    margin: 3vw;
+    padding: 1vw 2vw;
+    font-size: 2vw;
+  }
+
+  .shuffle {
+    max-height: 100px;
+    max-width: 100px;
+    font-size: 4vw;
+  }
 }
