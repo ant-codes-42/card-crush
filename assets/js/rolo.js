@@ -1,5 +1,5 @@
 // Global variables go here
-let studyCategory = [];
+let studyCategory = []; 
 let currentCard = [];
 let stackPosition = readStackPosition();
 
