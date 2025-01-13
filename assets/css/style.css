@@ -120,6 +120,7 @@ h2 {
 .roloSqButton, .roloCrButton {
   display: inline-block;
   margin: 5px;
+  padding: 0px 10px;
 }
 
 .roloSqButton {
@@ -302,7 +303,7 @@ h2 {
 /* Responsive Buttons */
 @media (max-width: 600px) {
   .sqCreate, .roloCrButton {
-      width: 100%;
+      width: 85%;
       font-size: 18px;
       margin: 5px;
   }
@@ -325,5 +326,12 @@ h2 {
 @media (max-width: 768px) {
   .catHeader {
       font-size: 32px;
+      padding: 0px;
+  }
+
+  .reducePadding {
+      padding: 0px;
+      margin: 0;
+      max-height: 10px;
   }
 }
