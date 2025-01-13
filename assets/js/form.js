@@ -1,18 +1,22 @@
 // Global variables go here
 // const createCatButton = document.getElementById('createCatButton');
-const saveClick = document.getElementById(`card-save-button`);
+// const saveClick = document.getElementById(`card-save-button`);
 // Event listener for create category button click - calls createCategoryModal
 // createCatButton.addEventListener('click', createCategoryModal);
 let categoriesArray = [];
+let tempSessionCategory = sessionCategory;
 
 // This is the master create category modal function - must contain everything needed within the modal (I think)
 function createCategoryModal(event) {
     event.preventDefault();
     const categoryInput = document.getElementById('categoryInput');
+    const categoryError = document.getElementById('categoryError');
     if (!categoryInput.value) {
-        alert('Please enter a category name');
+        categoryError.textContent = 'Please enter a category name';
+        categoryError.style.display = 'block';
         return;
     } else {
+        categoryError.style.display = `none`;
         sessionCategory = categoryInput.value; // Store the category name in sessionCategory
         storeSessionCategory(sessionCategory); // Store the category name in session storage
         categoryInput.value = '';
@@ -34,7 +38,7 @@ function createCategoryModal(event) {
         });
 
         $('#card-save-button').click(cardSaveButton);
-
+            console.log(`call save function`)
         $('#modal1').modal('attach events', '#another-card-button');
 
         $('#another-card-button').click(function () {
@@ -43,15 +47,32 @@ function createCategoryModal(event) {
         });
     }
 }
+document.getElementById('createCatButton').addEventListener('click', createCategoryModal);
 
 function cardSaveButton(event) {
     event.preventDefault();
-    const cardFront = document.getElementById('card-front').value;
-    const cardBack = document.getElementById('card-back').value;
+    let cardFront = document.getElementById('card-front');
+    let cardBack = document.getElementById('card-back'); 
+    const cardBackError = document.getElementById('cardBackError');
+    const cardFrontError = document.getElementById('cardFrontError');
 
-    if (!cardFront || !cardBack) {
-        alert('Please finish your cards');
-        return;
+
+    if (cardFront.value.trim() == "") {
+        cardFrontError.textContent = `Front card empty`;
+        cardFrontError.style.display = `block`;
+    } else {
+        cardFrontError.style.display = `none`;
+    }
+    if (cardBack.value.trim() == "") {
+        cardBackError.textContent = `Back card empty`;
+        cardBackError.style.display = `block`;
+    } else {
+        cardBackError.style.display = `none`;
+    }
+    if (cardFront.value == "" || cardBack.value == "") {
+        $(`#modal2`).modal(`hide`);
+        $(`#modal1`).modal(`show`);
+        
     }
 
     // Find the category in the flashcards array
@@ -66,8 +87,10 @@ function cardSaveButton(event) {
         flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
         storeLocalFlashcards();
     }
-
-    alert('Card saved!');
+    location.reload();
+    sessionCategory = tempSessionCategory;
+    storeSessionCategory(sessionCategory);
+    return;
 }
 
 // Load the categories from flashcards into categoriesArray
