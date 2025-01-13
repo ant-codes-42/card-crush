@@ -23,18 +23,15 @@ function populateCatHeader() {
 
 // Create Card from array stacked with flip ability
 function createFlashcards(cards) {
-    cardStack.innerHTML = ""; // Do we need to clear existing cards?
+    cardStack.innerHTML = "";
 
     //loop to create number of cards in array
-    cards.forEach((card, studyCategory) => {
+    studyCategory.cards.forEach((card, index) => {
         const cardWrapper = document.createElement("div");
         cardWrapper.classList.add("cardCustom");
 
         const cardElement = document.createElement("div");
         cardElement.classList.add("cardInd");
-
-        // Adjusts stacking effect
-        cardWrapper.style.transform = `translateY(${studyCategory* 20}px)`;
 
         // Front side
         const cardFront = document.createElement("div");
@@ -138,15 +135,15 @@ function nextCard() {
 // Function to delete the current flashcard from the study category array and flashcards array
 function deleteCurrentFlashcard() {
     for (let i = 0; i < studyCategory.cards.length; i++) {
-        if (studyCategory.cards[i].index === currentCard.cards[0].index) {
+        if (studyCategory.cards[i].index === currentCard.index) {
             studyCategory.cards.splice(i, 1);
         }
     }
 
     for (let i = 0; i < flashcards.length; i++) {
-        if (flashcards[i].category === currentCard.category) {
+        if (flashcards[i].category === sessionCategory) {
             for (let j = 0; j < flashcards[i].cards.length; j++) {
-                if (flashcards[i].cards[j].index === currentCard.cards[0].index) {
+                if (flashcards[i].cards[j].index === currentCard.index) {
                     flashcards[i].cards.splice(j, 1);
                 }
             }

@@ -12,76 +12,104 @@
 </head>
 
 <body>
-    <section class="ui divider">
-        <header class="ui fixed menu ui massive menu" style="background-color: #1A237E;color: #FFFFFF;">
-            <div class="ui internally celled grid">
-                <div class="row">
-                    <div class="three wide column">
-                        <button class="roloSqButton">Edit</button>
-                    </div>
-                    <div class="ten wide column">
-                        <h1 id="categoryHeader"></h1>
-                    </div>
-                    <div class="three wide column">
-                        <button class="roloSqButton">Delete</button>
+    <!-- Header section with category buttons -->
+     <header class="ui internally celled grid catHeader">
+         <div class="row">
+            <div class="three wide column changeText">
+                 <button class="roloSqButton">Edit</button>
+            </div>
+            <div class="ten wide column">
+                <h1 id="categoryHeader" class="catHeader"></h1>
+            </div>
+            <div class="three wide column changeText">
+                <button class="roloSqButton">Delete</button>
+            </div>
+        </div>
+     </header>
+
+     <!-- Card Section -->
+     <section class="ui container">
+        <div class="ui two column centered grid">
+            <div class="row">
+                <div class="column">
+                    <h2>CRUSH IT!</h2>
+                </div>
+            </div> 
+            <div class="row" style="height:450px">
+                <div class="column">    
+                    <!-- This div puts the flashcards in a stack-->
+                    <div id="cardStack" class="cardContainer">
+                    <!-- placeholder for cards-->
                     </div>
                 </div>
-            </div>
-        </header>
-    </section>
-    <section class="ui center aligned container">
-        <h2>CRUSH IT!</h2>
-    </section>
-    <section class="ui center aligned container">
-        <!-- This div puts the flashcards in a stack-->
-        <div id="cardStack" class="cardContainer">
-            <!-- placeholder for cards-->
-        </div>
-        <div class="">
-            <button class="ui green button" id="crushCardButton">CRUSH</button>
-            <button class="ui orange button" id="nextCardButton">Next</button>
+            </div>  
         </div>  
-    </section>
-    <section>
-        <footer class="ui center aligned container">
-            <div>
-                <button onclick="redirectPage('./index.html')" class="roloCrButton">
-                    <i class="arrow left icon"></i>
-                </button> <!--Back to homepage-->
-                <button onclick="shuffleStudyCategoryArray()" class="roloCrButton shuffle">
-                    <i class="random icon"></i>
-                </button> <!--shuffle cards-->
-                <button class="roloCrButton" id="addCardButton">
-                    <i class="plus icon"></i>
-                </button> <!--Create card-->
+
+        <!-- Card button Row -->
+            <div class="ui two column grid">
+                <div class="row"> 
+                    <div class="center aligned column"> 
+                        <button class="sqCreate crushButton" id="crushCardButton">CRUSH</button>
+                    </div>  
+                    <div class="center aligned column">
+                        <button class="sqCreate" id="nextCardButton">Next</button>
+                </div> 
             </div>
-        </footer>
+        </div>
+
+        <!-- Round button Row -->
+         <div class="ui three column centered grid">
+            <div class="row">
+                <div class=" center aligned column">
+                        <button onclick="redirectPage('./index.html')" class="roloCrButton">
+                            <i class="arrow left icon"></i>
+                        </button> <!--Back to homepage-->
+                </div>
+                <div class="center aligned column">
+                        <button onclick="shuffleStudyCategoryArray()" class="roloCrButton shuffle">
+                            <i class="random icon"></i>
+                        </button> <!--shuffle cards-->
+                </div>
+                <div class="center aligned column">
+                        <button class="roloCrButton" id="addCardButton">
+                            <i class="plus icon"></i>
+                        </button> <!--Create card-->
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!--------------------- JS Scripts ------------------------>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="./assets/js/logic.js"></script>
     <script src="./assets/js/rolo.js"></script>
+
+  <!--------------------- Modals ------------------------>
+
+    <div class="ui modal" id="modal3">
+        <div class="header">
+            Create a Card
+        </div>
+        <div class="content">
+            <form class="ui form">
+                <div class="field">
+                    <label for="front">Front:</label>
+                    <input type="text" id="rolo-card-front" name="front" placeholder="Enter text here...." />
+                </div>
+                <div class="field">
+                    <label for="back">Back:</label>
+                    <input type="text" id="rolo-card-back" name="back" placeholder="Enter text here...." />
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui large grey button close" id="card-close-button">Cancel</div>
+            <div class="ui  large blue button" id="card-save-button">Save</div>
+        </div>
+    </div>
+
 </body>
-<div class="ui modal" id="modal3">
-    <div class="header">
-        Create a Card
-    </div>
-    <div class="content">
-        <form class="ui form">
-            <div class="feild">
-                <label for="front">Front:</label>
-                <input type="text" id="rolo-card-front" name="front" placeholder="Enter text here...." />
-            </div>
-            <div class="feild">
-                <label for="back">Back:</label>
-                <input type="text" id="rolo-card-back" name="back" placeholder="Enter text here...." />
-            </div>
-        </form>
-    </div>
-    <div class="actions">
-        <div class="ui large grey button close" id="card-close-button">Cancel</div>
-        <div class="ui  large blue button" id="card-save-button">Save</div>
-    </div>
-</div>
 </html>
