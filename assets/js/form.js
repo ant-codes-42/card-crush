@@ -4,6 +4,7 @@
 // Event listener for create category button click - calls createCategoryModal
 // createCatButton.addEventListener('click', createCategoryModal);
 let categoriesArray = [];
+let tempSessionCategory = sessionCategory;
 
 // This is the master create category modal function - must contain everything needed within the modal (I think)
 function createCategoryModal(event) {
@@ -86,7 +87,9 @@ function cardSaveButton(event) {
         flashcards.push({ category: sessionCategory, cards: [{ front: cardFront, back: cardBack }] });
         storeLocalFlashcards();
     }
-
+    location.reload();
+    sessionCategory = tempSessionCategory;
+    storeSessionCategory(sessionCategory);
     return;
 }
 
