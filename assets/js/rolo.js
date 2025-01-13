@@ -31,7 +31,7 @@ function createFlashcards() {
     let offset = 0;
 
     //loop to create number of cards in array
-    for (let i = 0; i < Math.min(studyCategory.cards.length, 5); i++) {
+    for (let i = Math.min(studyCategory.cards.length, 5) - 1; i >= 0; i--) {
         const card = studyCategory.cards[i];
 
         const cardWrapper = document.createElement("div");
@@ -281,7 +281,13 @@ function cardSaveButton(event) {
     const cardBack = document.getElementById('rolo-card-back').value;
 
     if (!cardFront || !cardBack) {
-        alert('Please finish your cards');
+        $('#card-save-button').popup({
+            on: 'manual',
+            position: 'top center',
+            content: 'Please enter a front and back for the card'
+        });
+
+        $('#card-save-button').popup('show');
         return;
     }
 
