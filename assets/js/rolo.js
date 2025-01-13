@@ -313,9 +313,6 @@ function cardSaveButton(event) {
     studyCategory.cards.push({ front: cardFront, back: cardBack, index: studyCategory.cards.length });
     }
 
-    cardFront.value = '';
-    cardBack.value = '';
-
     $('#modal3').modal('hide');
 
     createFlashcards();
@@ -328,6 +325,8 @@ function cardSaveButton(event) {
 function cardAddRolo() {
     if (sessionCategory) {
         $('#modal3').modal('show');
+        $('#rolo-card-front').val('');
+        $('#rolo-card-back').val('');
 
         $('#card-close-button').click(function () {
             $('.ui.modal').modal('hide');
