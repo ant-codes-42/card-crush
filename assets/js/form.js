@@ -85,7 +85,11 @@ function cardSaveButton(event) {
         storeLocalFlashcards();
     }
     $(`#modal1`).modal(`hide`);
-    $(`#modal2`).modal(`show`);
+    $('#modal2').modal({
+        closable: false
+        })
+        .modal('show')
+        ;
 }
 
 // Load the categories from flashcards into categoriesArray
